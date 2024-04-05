@@ -59,7 +59,7 @@ public class Manage {
 
         List<Student> list = new ArrayList<>(students.values());
 
-        Collections.sort(list, (s1, s2) -> s1.getStdNum() - s2.getStdNum());
+        Collections.sort(list, (s1, s2) -> Integer.compare(s1.getStdNum(), s2.getStdNum()));
 
         for (Student student : list) {
             System.out.println(student.toString());
