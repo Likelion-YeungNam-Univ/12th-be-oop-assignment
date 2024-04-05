@@ -40,7 +40,9 @@ public class Student {
         return avg;
     }
 
-    public void update(int kor, int eng, int math) {
+    public void update(int stdNum, String name, int kor, int eng, int math) {
+        this.stdNum = stdNum;
+        this.name = name;
         this.kor = kor;
         this.eng = eng;
         this.math = math;

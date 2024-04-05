@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Manage {
 
     private final Map<String, Student> students = new HashMap<>();  // 학생 정보 저장
+    private static final Scanner sc = new Scanner(System.in);
 
     /* 학생 추가 */
     private void add(int stdNum, String name, int kor, int eng, int math) {
@@ -32,9 +33,9 @@ public class Manage {
     }
 
     /* 학생 정보 업데이트 */
-    private void update(Student student, int kor, int eng, int math) {
+    private void update(Student student, int stdNum, String name, int kor, int eng, int math) {
 
-        student.update(kor, eng, math);
+        student.update(stdNum, name, kor, eng, math);
         System.out.println(student.getName() + "학생 정보 수정 성공");
     }
 
@@ -55,9 +56,31 @@ public class Manage {
         return students.get(name);
     }
 
+    /* 정보 입력 메서드 (추가, 업데이트) */
+    private void inputInfo(String type, Student student) {
+        System.out.print("학번 입력: ");
+        int stdNum = sc.nextInt();
+
+        System.out.print("이름 입력: ");
+        String name = sc.next();
+
+        System.out.print("국어 성적 입력: ");
+        int kor = sc.nextInt();
+
+        System.out.print("영어 성적 입력: ");
+        int eng = sc.nextInt();
+
+        System.out.print("수학 성적 입력: ");
+        int math = sc.nextInt();
+
+        switch (type) {
+            case "add" -> add(stdNum, name, kor, eng, math);
+            case "update" -> update(student, stdNum, name, kor, eng, math);
+        }
+    }
+
     /* 프로그램 실행 메서드 */
     public void run() {
-        Scanner sc = new Scanner(System.in);
 
         while (true) {
             System.out.println("1 : 학생 추가, 2: 학생 조회, 3: 전체 학생 조회, 4: 학생 정보 수정, 5: 학생 정보 삭제, 6: 종료");
@@ -68,25 +91,10 @@ public class Manage {
             }
             switch (select) {
                 case 1 -> {
-                    System.out.print("학번 입력: ");
-                    int stdNum = sc.nextInt();
-
-                    System.out.print("이름 입력: ");
-                    String name = sc.next();
-
-                    System.out.print("국어 성적 입력: ");
-                    int kor = sc.nextInt();
-
-                    System.out.print("영어 성적 입력: ");
-                    int eng = sc.nextInt();
-
-                    System.out.print("수학 성적 입력: ");
-                    int math = sc.nextInt();
-
-                    add(stdNum, name, kor, eng, math);
+                    inputInfo("add", null);
                 }
                 case 2 -> {
-                    System.out.print("조회할 학생의 이름을 입력하세요");
+                    System.out.print("조회할 학생의 이름을 입력하세요: ");
                     String name = sc.next();
                     Student student = getStudent(name);
 
@@ -97,10 +105,12 @@ public class Manage {
 
                     read(student);
                 }
-                case 3 -> readAll();
+                case 3 -> {
+                    readAll();
+                }
 
                 case 4 -> {
-                    System.out.print("수정할 학생의 이름을 입력하세요");
+                    System.out.print("수정할 학생의 이름을 입력하세요: ");
                     String name = sc.next();
                     Student student = getStudent(name);
 
@@ -109,14 +119,10 @@ public class Manage {
                         continue;
                     }
 
-                    System.out.println("국어, 영어, 수학 순서대로 점수를 입력해주세요");
-                    int kor = sc.nextInt();
-                    int eng = sc.nextInt();
-                    int math = sc.nextInt();
-                    update(student, kor, eng, math);
+                    inputInfo("update", student);
                 }
                 case 5 -> {
-                    System.out.print("삭제할 학생의 이름을 입력하세요");
+                    System.out.print("삭제할 학생의 이름을 입력하세요: ");
                     String name = sc.next();
 
                     delete(name);
