@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Manage {
 
@@ -55,6 +53,19 @@ public class Manage {
     private Student getStudent(String name) {
         return students.get(name);
     }
+
+    /* 학번 순으로 정렬 후 출력 */
+    private void sortByStdNum() {
+
+        List<Student> list = new ArrayList<>(students.values());
+
+        Collections.sort(list, (s1, s2) -> s1.getStdNum() - s2.getStdNum());
+
+        for (Student student : list) {
+            System.out.println(student.toString());
+        }
+    }
+
 
     /* 정보 입력 메서드 (추가, 업데이트) */
     private void inputInfo(String type, Student student) {
