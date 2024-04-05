@@ -37,6 +37,16 @@ public class Manage {
         System.out.println(student.getName() + "학생 정보 수정 성공");
     }
 
+    /* 학생 정보 삭제 메서드 */
+    private void delete(String name) {
+
+        if(students.containsKey(name)) {
+            students.remove(name);
+            System.out.println(name + "학생 정보 삭제 성공");
+        }
+        else
+            System.out.println("해당 학생이 존재하지 않습니다.");
+    }
 
 
     /* HashMap에서 학생 정보 가져오기 */
