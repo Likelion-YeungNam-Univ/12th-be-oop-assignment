@@ -66,6 +66,17 @@ public class Manage {
         }
     }
 
+    /* 이름 순으로 정렬 후 출력*/
+    private void sortByName() {
+        List<Student> list = new ArrayList<>(students.values());
+
+        Collections.sort(list, (s1, s2) -> s1.getName().compareTo(s2.getName()));
+
+        for (Student student : list) {
+            System.out.println(student.toString());
+        }
+    }
+
 
     /* 정보 입력 메서드 (추가, 업데이트) */
     private void inputInfo(String type, Student student) {
