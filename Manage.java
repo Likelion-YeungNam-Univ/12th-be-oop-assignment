@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Manage {
 
@@ -54,5 +55,74 @@ public class Manage {
         return students.get(name);
     }
 
+    /* 프로그램 실행 메서드 */
+    public void run() {
+        Scanner sc = new Scanner(System.in);
 
+        while (true) {
+            System.out.println("1 : 학생 추가, 2: 학생 조회, 3: 전체 학생 조회, 4: 학생 정보 수정, 5: 학생 정보 삭제, 6: 종료");
+            int select = sc.nextInt();
+            if(select == 6) {
+                System.out.println("프로그램 종료");
+                break;
+            }
+            switch (select) {
+                case 1 -> {
+                    System.out.print("학번 입력: ");
+                    int stdNum = sc.nextInt();
+
+                    System.out.print("이름 입력: ");
+                    String name = sc.next();
+
+                    System.out.print("국어 성적 입력: ");
+                    int kor = sc.nextInt();
+
+                    System.out.print("영어 성적 입력: ");
+                    int eng = sc.nextInt();
+
+                    System.out.print("수학 성적 입력: ");
+                    int math = sc.nextInt();
+
+                    add(stdNum, name, kor, eng, math);
+                }
+                case 2 -> {
+                    System.out.print("조회할 학생의 이름을 입력하세요");
+                    String name = sc.next();
+                    Student student = getStudent(name);
+
+                    if (student == null) {
+                        System.out.println("해당 학생은 존재하지 않습니다.");
+                        continue;
+                    }
+
+                    read(student);
+                }
+                case 3 -> readAll();
+
+                case 4 -> {
+                    System.out.print("수정할 학생의 이름을 입력하세요");
+                    String name = sc.next();
+                    Student student = getStudent(name);
+
+                    if(student == null) {
+                        System.out.println("해당 학생은 존재하지 않습니다.");
+                        continue;
+                    }
+
+                    System.out.println("국어, 영어, 수학 순서대로 점수를 입력해주세요");
+                    int kor = sc.nextInt();
+                    int eng = sc.nextInt();
+                    int math = sc.nextInt();
+                    update(student, kor, eng, math);
+                }
+                case 5 -> {
+                    System.out.print("삭제할 학생의 이름을 입력하세요");
+                    String name = sc.next();
+
+                    delete(name);
+                }
+            }
+        }
+    }
 }
+
