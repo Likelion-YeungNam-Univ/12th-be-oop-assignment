@@ -23,4 +23,18 @@ public class Manage {
         }
     }
 
+    /* 특정 학생 정보 조회 메서드*/
+    private void read(Student student) {
+
+        System.out.println("학번       이름  국어  영어  수학  평균");
+        System.out.println(student);
+    }
+
+
+    /* HashMap에서 학생 정보 가져오기 */
+    private Student getStudent(String name) {
+        return students.get(name);
+    }
+
+
 }
