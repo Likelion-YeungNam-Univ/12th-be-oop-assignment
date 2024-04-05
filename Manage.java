@@ -30,6 +30,14 @@ public class Manage {
         System.out.println(student);
     }
 
+    /* 학생 정보 업데이트 */
+    private void update(Student student, int kor, int eng, int math) {
+
+        student.update(kor, eng, math);
+        System.out.println(student.getName() + "학생 정보 수정 성공");
+    }
+
+
 
     /* HashMap에서 학생 정보 가져오기 */
     private Student getStudent(String name) {
