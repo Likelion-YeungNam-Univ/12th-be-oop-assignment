@@ -13,4 +13,14 @@ public class Manage {
         System.out.println(name + "학생 추가 완료");
     }
 
+    /* 전체 학생 조회 */
+    private void readAll() {
+
+        System.out.println("학번       이름  국어  영어  수학  평균");
+
+        for(String student: students.keySet()) {
+            System.out.println(students.get(student));
+        }
+    }
+
 }
