@@ -82,7 +82,7 @@ public class Manage {
 
         List<Student> list = new ArrayList<>(students.values());
 
-        Collections.sort(list, (s1, s2) -> Double.compare(s1.getAvg(), s2.getAvg()));
+        Collections.sort(list, (s1, s2) -> Double.compare(s2.getAvg(), s1.getAvg()));
 
         for (Student student : list) {
             System.out.println(student.toString());
@@ -117,9 +117,10 @@ public class Manage {
     public void run() {
 
         while (true) {
-            System.out.println("1 : 학생 추가, 2: 학생 조회, 3: 전체 학생 조회, 4: 학생 정보 수정, 5: 학생 정보 삭제, 6: 종료");
+            System.out.println("1 : 학생 추가, 2: 학생 조회, 3: 전체 학생 조회, 4: 학생 정보 수정," +
+                    " 5: 학생 정보 삭제, 6: 학번 순 정렬, 7: 이름 순 정렬, 8: 평균 순 정렬, 0: 종료");
             int select = sc.nextInt();
-            if(select == 6) {
+            if(select == 0) {
                 System.out.println("프로그램 종료");
                 break;
             }
@@ -160,6 +161,15 @@ public class Manage {
                     String name = sc.next();
 
                     delete(name);
+                }
+                case 6 -> {
+                    sortByStdNum();
+                }
+                case 7 -> {
+                    sortByName();
+                }
+                case 8 -> {
+                    sortByAvg();
                 }
             }
         }
