@@ -11,13 +11,15 @@ import java.util.Scanner;
 
 public class ManagementController {
     private static final List<Student> Students = new ArrayList<>();
+    private static final Scanner scan = new Scanner(System.in);
     public void run(){
         while(true){
             OutputView.printMenuBar();
-            int input = InputView.readMenuBarCmd();
+            int input = InputView.readMenuBarCmd(scan);
             switch (input){
                 case 1:
                     Student student = inputStudent();
+                    break;
                 case 2:
                 case 3:
                 case 4:
@@ -32,11 +34,12 @@ public class ManagementController {
     }
 
     Student inputStudent(){
-        int stdId = InputView.readStudentId();
-        String name = InputView.readStudentName();
-        int koreanGrade = InputView.readKoreanGrade();
-        int englishGrade = InputView.readEnglishGrade();
-        int math = InputView.readMathGrade();
-
+        int stdId = InputView.readStudentId(scan);
+        scan.nextLine();
+        String name = InputView.readStudentName(scan);
+        int koreanGrade = InputView.readKoreanGrade(scan);
+        int englishGrade = InputView.readEnglishGrade(scan);
+        int mathGrade = InputView.readMathGrade(scan);
+        return new Student(stdId, name, koreanGrade, englishGrade, mathGrade);
     }
 }

@@ -2,10 +2,14 @@ package domain;
 
 public class Grade
 {
-    private int korean;
-    private int english;
-    private int math;
+    private int koreanGrade;
+    private int englishGrade;
+    private int mathGrade;
 
-
+    public Grade(int koreanGrade, int englishGrade, int mathGrade){
+        this.koreanGrade = koreanGrade;
+        this.englishGrade = englishGrade;
+        this.mathGrade = mathGrade;
+    }
 
 }
