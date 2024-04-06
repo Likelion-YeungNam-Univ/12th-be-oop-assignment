@@ -39,4 +39,5 @@ public class InputView {
         System.out.print(MATH_GRADE_INPUT);
         return scan.nextInt();
     }
+
 }

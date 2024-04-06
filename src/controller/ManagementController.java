@@ -13,6 +13,7 @@ public class ManagementController {
     ManagementService managementService;
     private static final Scanner scan = new Scanner(System.in);
     private static final List<Student> Students = new ArrayList<>();
+    // 학번을 key, 나머지는 value로 하면 검색이 더 용이해질까? 어떤 자료구조가 맞을까?
 
     public ManagementController() {
         managementService= new ManagementService();
@@ -21,16 +22,20 @@ public class ManagementController {
     public void run(){
         while(true){
             OutputView.printMenuBar();
-            int input = InputView.readMenuBarCmd(scan);
-            switch (input){
+            int cmd = InputView.readMenuBarCmd(scan);
+            switch (cmd){
                 case 1:
                     Student student = managementService.inputStudent(scan);
                     Students.add(student);
                     break;
                 case 2:
                     OutputView.printAllStudents(Students);
+                    break;
                 case 3:
-                    //검색
+                    int stdId = InputView.readStudentId(scan);
+                    student = managementService.searchStudent(Students, stdId);
+                    OutputView.printSearchedStudent(student);
+                    break;
                 case 4:
                     //수정
                 case 5:
