@@ -17,8 +17,9 @@ public class InputView {
 
     public static int readStudentId(Scanner scan){
         System.out.print(STUDENT_ID_INPUT);
-        return scan.nextInt();
-
+        int stdId =  scan.nextInt();
+        scan.nextLine();
+        return stdId;
     }
 
     public static String readStudentName(Scanner scan){

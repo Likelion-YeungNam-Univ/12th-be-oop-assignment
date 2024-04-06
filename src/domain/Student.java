@@ -1,13 +1,17 @@
 package domain;
 
 public class Student {
-    private int stdid;
-    private String name;
-    private Grade grade;
+    private final int stdId;
+    private final String name;
+    private final Grade grade;
 
     public Student(int stdId, String name, int koreanGrade, int englishGrade, int mathGrade){
-        this.stdid = stdId;
+        this.stdId = stdId;
         this.name = name;
         this.grade = new Grade(koreanGrade, englishGrade, mathGrade);
     }
+
+    public int getStdId(){ return stdId; }
+    public String getName(){ return name; }
+    public Grade getGrade(){ return grade; }
 }
