@@ -2,8 +2,8 @@ package domain;
 
 public class Student {
     private final int stdId;
-    private final String name;
-    private final Grade grade;
+    private String name;
+    private Grade grade;
 
     public Student(int stdId, String name, int koreanGrade, int englishGrade, int mathGrade){
         this.stdId = stdId;
@@ -14,4 +14,8 @@ public class Student {
     public int getStdId(){ return stdId; }
     public String getName(){ return name; }
     public Grade getGrade(){ return grade; }
+    public void setName(String name){ this.name = name; }
+    public void setGrade(Grade grade){
+        this.grade = grade;
+    }
 }

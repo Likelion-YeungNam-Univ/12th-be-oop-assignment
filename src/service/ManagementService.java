@@ -2,6 +2,7 @@ package service;
 
 import View.InputView;
 import View.OutputView;
+import domain.Grade;
 import domain.Student;
 
 import java.util.List;
@@ -27,5 +28,35 @@ public class ManagementService {
             }
         }
         return null;
+    }
+
+    public void editStudent(Student student, Scanner scan){
+        int editCmd = InputView.readEditCmd(scan);
+        Grade grade = student.getGrade();
+        switch (editCmd){
+            case 1:
+                String name = InputView.readStudentName(scan);
+                student.setName(name);
+                break;
+            case 2:
+                int koreanGrade = InputView.readKoreanGrade(scan);
+                grade.setKoreanGrade(koreanGrade);
+                student.setGrade(grade);
+                break;
+            case 3:
+                int englishGrade = InputView.readEnglishGrade(scan);
+                grade.setEnglishGrade(englishGrade);
+                student.setGrade(grade);
+                break;
+            case 4:
+                int mathGrade = InputView.readMathGrade(scan);
+                grade.setMathGrade(mathGrade);
+                student.setGrade(grade);
+                break;
+            case 5:
+                break;
+            default:
+                OutputView.printWrong();
+        }
     }
 }

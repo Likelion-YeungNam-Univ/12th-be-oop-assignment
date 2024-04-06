@@ -25,19 +25,24 @@ public class ManagementController {
             int cmd = InputView.readMenuBarCmd(scan);
             switch (cmd){
                 case 1:
-                    Student student = managementService.inputStudent(scan);
-                    Students.add(student);
+                    Student addStudent = managementService.inputStudent(scan);
+                    Students.add(addStudent);
                     break;
                 case 2:
                     OutputView.printAllStudents(Students);
                     break;
                 case 3:
-                    int stdId = InputView.readStudentId(scan);
-                    student = managementService.searchStudent(Students, stdId);
-                    OutputView.printSearchedStudent(student);
+                    OutputView.printSearchSubject();
+                    int searchStdId = InputView.readStudentId(scan);
+                    Student searchStudent = managementService.searchStudent(Students, searchStdId);
+                    OutputView.printSearchedStudent(searchStudent);
                     break;
                 case 4:
-                    //수정
+                    OutputView.printEditSubject();
+                    int editStdId = InputView.readEditStudentID(scan);
+                    Student editStudent = managementService.searchStudent(Students, editStdId);
+                    managementService.editStudent(editStudent, scan);
+                    break;
                 case 5:
                     //삭제
                 case 6:

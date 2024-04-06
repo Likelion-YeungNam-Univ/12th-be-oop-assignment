@@ -2,9 +2,9 @@ package domain;
 
 public class Grade
 {
-    private final int koreanGrade;
-    private final int englishGrade;
-    private final int mathGrade;
+    private int koreanGrade;
+    private int englishGrade;
+    private int mathGrade;
 
     public Grade(int koreanGrade, int englishGrade, int mathGrade){
         this.koreanGrade = koreanGrade;
@@ -15,12 +15,19 @@ public class Grade
     public int getEnglishGrade() {
         return englishGrade;
     }
-
     public int getKoreanGrade() {
         return koreanGrade;
     }
-
     public int getMathGrade() {
         return mathGrade;
+    }
+    public void setKoreanGrade(int koreanGrade){
+        this.koreanGrade = koreanGrade;
+    }
+    public void setEnglishGrade(int englishGrade){
+        this.englishGrade = englishGrade;
+    }
+    public void setMathGrade(int mathGrade) {
+        this.mathGrade = mathGrade;
     }
 }

@@ -3,12 +3,14 @@ package View;
 import java.util.Scanner;
 
 public class InputView {
-    private static final String MENU_BAR_INPUT = "기능 입력 : ";
+    private static final String MENU_BAR_INPUT = "원하는 서비스 선택 : ";
     private static final String STUDENT_ID_INPUT = "학번 입력 : ";
+    public static final String EDIT_STUDENT_ID_INPUT = "수정할 학생 학번 입력 : ";
     private static final String STUDENT_NAME_INPUT = "이름 입력 : ";
-    private static final String KOREAN_GRADE_INPUT = "국어 입력 : ";
-    private static final String ENGLISH_GRADE_INPUT = "영어 입력 : ";
-    private static final String MATH_GRADE_INPUT = "수학 입력 : ";
+    private static final String KOREAN_GRADE_INPUT = "국어성적 입력 : ";
+    private static final String ENGLISH_GRADE_INPUT = "영어성적 입력 : ";
+    private static final String MATH_GRADE_INPUT = "수학성적 입력 : ";
+    private static final String EDIT_LIST = "수정항목 선택\n1. 이름, 2. 국어성적, 3. 영어성적, 4. 수학성적, 5. 메인메뉴 이동";
 
     public static int readMenuBarCmd(Scanner scan){
         System.out.print(MENU_BAR_INPUT);
@@ -40,4 +42,12 @@ public class InputView {
         return scan.nextInt();
     }
 
+    public static int readEditCmd(Scanner scan){
+        System.out.println(EDIT_LIST);
+        return scan.nextInt();
+    }
+    public static int readEditStudentID(Scanner scan){
+        System.out.println(EDIT_STUDENT_ID_INPUT);
+        return scan.nextInt();
+    }
 }
