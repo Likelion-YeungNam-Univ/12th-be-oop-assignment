@@ -19,8 +19,10 @@ public class ManagementController {
             switch (input){
                 case 1:
                     Student student = inputStudent();
+                    Students.add(student);
                     break;
                 case 2:
+                    OutputView.printAllStudents(Students);
                 case 3:
                 case 4:
                 case 5:
@@ -35,7 +37,6 @@ public class ManagementController {
 
     Student inputStudent(){
         int stdId = InputView.readStudentId(scan);
-        scan.nextLine();
         String name = InputView.readStudentName(scan);
         int koreanGrade = InputView.readKoreanGrade(scan);
         int englishGrade = InputView.readEnglishGrade(scan);
