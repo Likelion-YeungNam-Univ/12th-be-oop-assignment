@@ -12,7 +12,7 @@ public class ManagementService {
     public Student inputStudent(Scanner scan){
         OutputView.printRegister();
 
-        int stdId = InputView.readStudentId(scan);
+        int stdId = InputView.readStudentID(scan);
         String name = InputView.readStudentName(scan);
         int koreanGrade = InputView.readKoreanGrade(scan);
         int englishGrade = InputView.readEnglishGrade(scan);
@@ -58,5 +58,10 @@ public class ManagementService {
             default:
                 OutputView.printWrong();
         }
+    }
+
+    public void deleteStudent(List<Student> students, int stdId) {
+        students.removeIf(student -> student.getStdId() == stdId);
+
     }
 }

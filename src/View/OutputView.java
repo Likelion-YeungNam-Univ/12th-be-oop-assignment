@@ -12,8 +12,8 @@ public class OutputView {
     private static final String STUDENT_REGISTER_PRINT = "\n<학생 등록>";
     private static final String STUDENT_INFO_PRINT = "\n<학생 출력>";
     public static final String STUDENT_SEARCH_PRINT = "\n<학생 검색>";
-
     public static final String STUDENT_EDIT_PRINT = "\n<학생 수정>";
+    public static final String STUDENT_DELETE_PRINT = "\n<학생 삭제>";
     private static final String STUDENT_INFO_PRINT_FORMAT = "- %s\n학번 : %d\n국어성적 : %3d, 영어성적 : %3d, 수학성적 : %3d\n\n";
 
     public static void printMenuBar(){
@@ -31,28 +31,20 @@ public class OutputView {
     public static void printSearchSubject(){
         System.out.println(STUDENT_SEARCH_PRINT);
     }
-    public static void printEditSubject(){
-        System.out.println(STUDENT_EDIT_PRINT);
-    }
+    public static void printEditSubject(){ System.out.println(STUDENT_EDIT_PRINT); }
+    public static void printDeleteSubject() { System.out.println(STUDENT_DELETE_PRINT); }
     public static void printExit(){
         System.out.println(EXIT_MSG);
     }
-
     public static void printWrong(){
         System.out.println(WRONG_INPUT_MSG);
     }
-
     public static void printSearchedStudent(Student student) {
         printStudentInfo(student);
     }
-
     public static void printStudentInfo(Student student){
         Grade grade = student.getGrade();
         System.out.printf(STUDENT_INFO_PRINT_FORMAT, student.getName(), student.getStdId(),
                 grade.getKoreanGrade(), grade.getEnglishGrade(), grade.getMathGrade() );
-    }
-
-    public static void printChooseEditCmd(){
-        System.out.println();
     }
 }
