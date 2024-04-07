@@ -32,6 +32,7 @@ public class Main {
                 break;
             case 5:
                 System.out.println("5번: 학생 삭제 기능입니다.");
+                Delete.deleteStudent(students);
                 break;
         }
     }
