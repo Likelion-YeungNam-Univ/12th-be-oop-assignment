@@ -34,9 +34,14 @@ public class Main {
 
                     break;
                 case 2:
+                    //전체 조회
                     m.printDb();
                     break;
                 case 3:
+                    //학번으로 검색
+                    System.out.print("학번을 입력하세요: ");
+                    String searchId= scn.next();
+                    m.search(searchId);
                     break;
                 case 4:
                     break;

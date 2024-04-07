@@ -61,4 +61,19 @@ public class Management {
                     st.getId(),st.getName(),st.getK_score(),st.getE_score(),st.getM_score());
         }
     }
+    public void search(String searchId){
+        int i=0;
+        for (Student st: students){
+            if(st.getId().equals(searchId)){
+                System.out.printf("학번: %s / 이름: %s / 국어점수: %d / 영어점수: %d / 수학점수: %d\n",
+                        st.getId(),st.getName(),st.getK_score(),st.getE_score(),st.getM_score());
+                break;
+            }
+            i++;
+            if(i==students.size()){
+                System.out.println("해당 학생 없음");
+            }
+
+        }
+    }
 }
