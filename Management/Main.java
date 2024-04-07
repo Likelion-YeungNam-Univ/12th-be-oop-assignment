@@ -28,6 +28,7 @@ public class Main {
                 break;
             case 4:
                 System.out.println("4번: 학생 정보 수정 기능입니다.");
+                Modify.modifyStudent(students, sc);
                 break;
             case 5:
                 System.out.println("5번: 학생 삭제 기능입니다.");
