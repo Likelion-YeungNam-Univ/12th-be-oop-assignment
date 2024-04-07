@@ -34,6 +34,7 @@ public class Main {
 
                     break;
                 case 2:
+                    m.printDb();
                     break;
                 case 3:
                     break;

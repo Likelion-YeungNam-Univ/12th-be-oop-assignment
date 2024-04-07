@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Management {
     private ArrayList<Student> students=new ArrayList<>();
-    Management(){}
+    Management(){ load(); }
 
     // 학생 등록
     public void enroll(Student st){
@@ -24,5 +24,41 @@ public class Management {
         }
 
     }
+    public void load() {
+        try {
+            BufferedReader r = new BufferedReader(new FileReader("DB.txt"));
+            String data;
 
+            //db읽어오기
+            while (true) {
+                data=r.readLine();
+                if(data==null){
+                    break;
+                }
+                else{
+                    String[] info = data.split("/");
+
+                    String studentId = info[0];
+                    String name = info[1];
+                    int koreanScore = Integer.parseInt(info[2]);
+                    int englishScore = Integer.parseInt(info[3]);
+                    int mathScore = Integer.parseInt(info[4]);
+
+                    Student student = new Student(studentId, name, koreanScore, englishScore, mathScore);
+                    students.add(student);
+                }
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("실패");
+        }
+
+    }
+    public void printDb(){
+        for (Student st: students){
+            System.out.printf("학번: %s / 이름: %s / 국어점수: %d / 영어점수: %d / 수학점수: %d\n",
+                    st.getId(),st.getName(),st.getK_score(),st.getE_score(),st.getM_score());
+        }
+    }
 }
