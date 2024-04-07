@@ -161,4 +161,26 @@ public class StudentList {
         }
     }
 
+    public void getStatistics() {
+        int sumKor = 0, sumEng = 0, sumMath = 0;
+        double avgKor = 0.0, avgEng = 0.0, avgMath = 0.0, sumAvg = 0.0, totalAvg = 0.0;
+
+        for (int i = 0; i < studentsNum; i++) {
+            Student temp = studentList.get(i);
+            sumKor += temp.getKorScore();
+            sumEng += temp.getEngScore();
+            sumMath += temp.getMathScore();
+            sumAvg += temp.getAverage();
+        }
+        avgKor = (double) sumKor / studentsNum;
+        avgEng = (double) sumEng / studentsNum;
+        avgMath = (double) sumMath / studentsNum;
+        totalAvg = sumAvg / studentsNum; // studentsList의 국, 영, 수 합계 평균
+
+        System.out.println("총 인원: " + studentsNum + "명");
+        System.out.println("국어 평균: " + String.format("%.2f", avgKor) + "점");
+        System.out.println("영어 평균: " + String.format("%.2f", avgEng) + "점");
+        System.out.println("수학 평균: " + String.format("%.2f", avgMath) + "점");
+        System.out.println("학생들의 평균 점수: " + String.format("%.2f", totalAvg) + "점");
+    }
 }

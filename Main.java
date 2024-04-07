@@ -19,6 +19,7 @@ public class Main {
             System.out.println("3. 학생 전체 조회");
             System.out.println("4. 학생 정보 수정");
             System.out.println("5. 학생 삭제");
+            System.out.println("6. 성적 통계 확인");
             System.out.println("================================");
             System.out.print("메뉴를 입력하세요. (* 종료를 원한다면 -1을 입력하세요.) : ");
             option = sc.nextInt();
@@ -86,6 +87,8 @@ public class Main {
                 System.out.print("이름: "); delName = sc.next();
 
                 classRoom.deleteStudent(delStId, delName);
+            } else if (option == 6) {
+                classRoom.getStatistics();
             }
         }
     }
