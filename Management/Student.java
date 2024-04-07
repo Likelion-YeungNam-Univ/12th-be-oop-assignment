@@ -1,3 +1,6 @@
+package Management;
+import Management.Register;
+
 public class Student {
     private String studentId;
     private String name;

@@ -1,9 +1,11 @@
+package Management;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     // 학생 정보를 저장할 ArrayList 생성
-    // private static ArrayList<Student> students = new ArrayList<>();
+    private static ArrayList<Student> students = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -14,6 +16,7 @@ public class Main {
         switch (input) {
             case 1:
                 System.out.println("1번: 학생 등록 기능입니다.");
+                Register.registerStudent(sc, students);
                 break;
             case 2:
                 System.out.println("2번: 전체 조회 기능입니다.");
