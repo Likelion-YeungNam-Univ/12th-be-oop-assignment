@@ -3,8 +3,6 @@ public class Student {
 
     private String id;
     private String name;
-    private String major;
-
     private int k_score;
     private int e_score;
     private int m_score;
@@ -12,10 +10,9 @@ public class Student {
     Student() {}
 
 //학생 등록
-    Student(String id, String name, String major, int k_score, int e_score, int m_score){
+    Student(String id, String name, int k_score, int e_score, int m_score){
         this.id=id;
         this.name=name;
-        this.major=major;
         this. k_score= k_score;
         this. e_score= e_score;
         this. m_score=m_score;
@@ -25,9 +22,6 @@ public class Student {
     }
     public String getName() {
         return name;
-    }
-    public String getMajor() {
-        return major;
     }
     public int getK_score() {
         return k_score;
