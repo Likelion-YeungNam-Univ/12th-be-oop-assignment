@@ -7,10 +7,12 @@ public class Student {
     private int engScore;
     private int mathScore;
 
-    // 기본 생성자 - 학번, 이름
-    Student(String stId, String nm) {
+    Student(String stId, String nm, int kor, int eng, int math) {
         this.studentId = stId;
         this.name = nm;
+        this.korScore = kor;
+        this.engScore = eng;
+        this.mathScore = math;
     }
 
     // ------------
@@ -37,6 +39,12 @@ public class Student {
     // ------------
 
     // ------------
+    // 이름 변경
+    public void setName(String newName) {
+        String oldName = this.name;
+        this.name = newName;
+        System.out.println("이름이 변경되었습니다. (변경 전: " + oldName + " → 변경 후: " + newName + ")");
+    }
     // 국어 성적 입력
     public void setKorScore(int kor) {
         this.korScore = kor;
@@ -66,7 +74,7 @@ public class Student {
     // ------------
     // 학생 정보 출력
     public void printStudent() {
-        System.out.println("학번: " + this.studentId + ", 이름: " + this.name + "의 정보를 조회합니다.");
+        System.out.println("학번: " + this.studentId + ", 이름: " + this.name + "의 정보");
         System.out.println("국어 성적: " + this.korScore + ", 영어 성적: " + this.engScore + ", 수학 성적: " + this.mathScore);
     }
 
