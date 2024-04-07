@@ -20,6 +20,7 @@ public class Main {
                 break;
             case 2:
                 System.out.println("2번: 전체 조회 기능입니다.");
+                Fetch.fetchStudents(students);
                 break;
             case 3:
                 System.out.println("3번: 학생 검색 기능입니다.");
