@@ -24,6 +24,7 @@ public class Main {
                 break;
             case 3:
                 System.out.println("3번: 학생 검색 기능입니다.");
+                Search.searchStudent(sc, students);
                 break;
             case 4:
                 System.out.println("4번: 학생 정보 수정 기능입니다.");
