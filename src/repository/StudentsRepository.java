@@ -1,10 +1,15 @@
 package repository;
 
 import domain.Student;
+import dto.StudentDTO;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class StudentsRepository {
+
     public static final Map<Integer, Student> students = new ConcurrentHashMap<>();
 
     public void save(Student student){
@@ -15,11 +20,15 @@ public class StudentsRepository {
         return students.get(searchStdId);
     }
 
-    public Map<Integer, Student> findAll(){
-        return students;
+    public List<StudentDTO> findAll(){
+        List<StudentDTO> studentsDTO= new ArrayList<>();
+        for (Map.Entry<Integer, Student> entrySet : students.entrySet()) {
+            studentsDTO.add(new StudentDTO(entrySet.getValue()));
+        }
+        return studentsDTO;
     }
 
-    public void delete(Student student){
-        students.remove(student.getStdId());
+    public void delete(int stdId){
+        students.remove(stdId);
     }
 }

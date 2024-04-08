@@ -1,16 +1,22 @@
 package dto;
 
 import domain.Grade;
+import domain.Student;
 
 public class StudentDTO {
     private final int stdId;
     private String name;
     private Grade grade;
 
-    public StudentDTO(int stdId, String name, int koreanGrade, int englishGrade, int mathGrade){
+    public StudentDTO(int stdId, String name, GradeDTO gradeDTO){
         this.stdId = stdId;
         this.name = name;
-        this.grade = new Grade(koreanGrade, englishGrade, mathGrade);
+        this.grade = Grade.fromDTO(gradeDTO);
+    }
+    public StudentDTO(Student student){
+        this.stdId = student.getStdId();
+        this.name = student.getName();
+        this.grade = student.getGrade();
     }
 
     public int getStdId() {

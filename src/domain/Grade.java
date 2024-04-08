@@ -1,6 +1,7 @@
 package domain;
 
 import constant.GradeConstant;
+import dto.GradeDTO;
 
 public class Grade
 {
@@ -8,11 +9,14 @@ public class Grade
     private int englishGrade;
     private int mathGrade;
     private double average;
-    public Grade(int koreanGrade, int englishGrade, int mathGrade){
-        this.koreanGrade = koreanGrade;
-        this.englishGrade = englishGrade;
-        this.mathGrade = mathGrade;
+    protected Grade(GradeDTO gradeDTO){
+        this.koreanGrade = gradeDTO.getKoreanGrade();
+        this.englishGrade = gradeDTO.getEnglishGrade();
+        this.mathGrade = gradeDTO.getMathGrade();
         setAverage();
+    }
+    public static Grade fromDTO(GradeDTO gradeDTO){
+        return new Grade(gradeDTO);
     }
 
     public int getEnglishGrade() {
@@ -23,11 +27,6 @@ public class Grade
     }
     public int getMathGrade() {
         return mathGrade;
-    }
-
-
-    public double getAverage() {
-        return average;
     }
 
     public void setAverage() {
@@ -48,4 +47,5 @@ public class Grade
         this.mathGrade = mathGrade;
         setAverage();
     }
+
 }

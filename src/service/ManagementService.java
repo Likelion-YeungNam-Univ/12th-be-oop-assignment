@@ -4,40 +4,34 @@ import View.InputView;
 import View.OutputView;
 import domain.Grade;
 import domain.Student;
+import dto.GradeDTO;
 import dto.StudentDTO;
 import repository.StudentsRepository;
+import validate.Validate;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class ManagementService {
     public static final StudentsRepository studentRepository = new StudentsRepository();
-    public StudentDTO inputStudent(Scanner scan){
-        int stdId = InputView.readStudentID(scan);
-        String name = InputView.readStudentName(scan);
-        int koreanGrade = InputView.readKoreanGrade(scan);
-        int englishGrade = InputView.readEnglishGrade(scan);
-        int mathGrade = InputView.readMathGrade(scan);
-        return new StudentDTO(stdId, name, koreanGrade, englishGrade, mathGrade);
-    }
 
     public void createStudent(StudentDTO studentDTO) {
-        Student student = new Student(studentDTO);
+        Student student = Student.fromDTO(studentDTO);
+        Validate.isDupStudent(studentRepository, student);
         studentRepository.save(student);
     }
 
-    public Student findStudent(Scanner scan){
-        int searchStdId = InputView.readStudentID(scan);
-        return studentRepository.findById(searchStdId);
-    }
-    public StudentDTO searchStudent(Scanner scan){
-        Student student = findStudent(scan);
+    public StudentDTO findStudent(Scanner scan){
+        String searchStdId = InputView.readStudentID(scan);
+        Validate.isValidStudentNumber(searchStdId);
+        Student student = studentRepository.findById(Integer.parseInt(searchStdId));
+        Validate.isValidStudent(student);
         Grade grade = student.getGrade();
-        return new StudentDTO(student.getStdId(), student.getName(), grade.getKoreanGrade(), grade.getEnglishGrade(), grade.getMathGrade());
+        return new StudentDTO(student.getStdId(), student.getName(), new GradeDTO(grade));
     }
 
-    public void editStudent(Scanner scan){
-        StudentDTO studentDTO = searchStudent(scan);
+    public void editStudent(StudentDTO studentDTO, Scanner scan){
         Grade grade = studentDTO.getGrade();
-
         int editCmd = InputView.readEditCmd(scan);
 
         switch (editCmd){
@@ -46,22 +40,22 @@ public class ManagementService {
                 studentDTO.setName(name);
                 break;
             case 2:
-                int koreanGrade = InputView.readKoreanGrade(scan);
+                int koreanGrade = Integer.parseInt(InputView.readKoreanGrade(scan));
                 grade.setKoreanGrade(koreanGrade);
                 studentDTO.setGrade(grade);
                 break;
             case 3:
-                int englishGrade = InputView.readEnglishGrade(scan);
+                int englishGrade = Integer.parseInt(InputView.readEnglishGrade(scan));
                 grade.setEnglishGrade(englishGrade);
                 studentDTO.setGrade(grade);
                 break;
             case 4:
-                int mathGrade = InputView.readMathGrade(scan);
+                int mathGrade = Integer.parseInt(InputView.readMathGrade(scan));
                 grade.setMathGrade(mathGrade);
                 studentDTO.setGrade(grade);
                 break;
             case 5:
-                break;
+                return;
             default:
                 OutputView.printWrong();
         }
@@ -69,7 +63,11 @@ public class ManagementService {
     }
 
     public void deleteStudent(Scanner scan) {
-        Student student = findStudent(scan);
-        studentRepository.delete(student);
+        StudentDTO studentDTO = findStudent(scan);
+        studentRepository.delete(studentDTO.getStdId());
+    }
+
+    public List<StudentDTO> findAll() {
+        return studentRepository.findAll();
     }
 }
