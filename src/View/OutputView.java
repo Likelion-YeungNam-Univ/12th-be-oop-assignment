@@ -2,8 +2,13 @@ package View;
 
 import domain.Grade;
 import domain.Student;
+import dto.StudentDTO;
+import repository.StudentsRepository;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class OutputView {
     private static final String MENU_BAR_MSG = "1. 학생 등록, 2. 학생 전체 조회, 3. 학생 검색, 4. 학생 정보 수정, 5. 학생 삭제, 6. 종료";
@@ -19,9 +24,14 @@ public class OutputView {
     public static void printMenuBar(){
         System.out.println(MENU_BAR_MSG);
     }
-    public static void printAllStudents(List<Student> students){
+    public static void printAllStudents(){
+        StudentsRepository studentsRepository = new StudentsRepository();
         System.out.println(STUDENT_INFO_PRINT);
-        for (Student student : students){
+        Map<Integer, Student> students = studentsRepository.findAll();
+        Student student;
+        for (Entry<Integer, Student> entrySet : students.entrySet())
+        {
+            student = entrySet.getValue();
             printStudentInfo(student);
         }
     }
@@ -39,7 +49,9 @@ public class OutputView {
     public static void printWrong(){
         System.out.println(WRONG_INPUT_MSG);
     }
-    public static void printSearchedStudent(Student student) {
+    public static void printSearchedStudent(StudentDTO studentDTO) {
+        StudentsRepository studentsRepository = new StudentsRepository();
+        Student student = studentsRepository.findById(studentDTO.getStdId());
         printStudentInfo(student);
     }
     public static void printStudentInfo(Student student){

@@ -3,6 +3,7 @@ package controller;
 import View.InputView;
 import View.OutputView;
 import domain.Student;
+import dto.StudentDTO;
 import service.ManagementService;
 
 import java.util.ArrayList;
@@ -25,31 +26,29 @@ public class ManagementController {
                 OutputView.printMenuBar();
                 int cmd = InputView.readMenuBarCmd(scan);
                 switch (cmd) {
-                    case 1:
-                        Student addStudent = managementService.inputStudent(scan);
-                        Students.add(addStudent);
+                    case 1://학생  등록
+                        OutputView.printRegister();
+                        StudentDTO studentDTO = managementService.inputStudent(scan);
+                        managementService.createStudent(studentDTO);
                         break;
-                    case 2:
-                        OutputView.printAllStudents(Students);
+                    case 2://학생 정보 출력
+                        OutputView.printAllStudents();
                         break;
-                    case 3:
+                    case 3://학생 찾기
                         OutputView.printSearchSubject();
-                        int searchStdId = InputView.readStudentID(scan);
-                        Student searchStudent = managementService.searchStudent(Students, searchStdId);
-                        OutputView.printSearchedStudent(searchStudent);
+                        StudentDTO searchStudentDTO = managementService.searchStudent(scan);
+                        OutputView.printSearchedStudent(searchStudentDTO);
                         break;
-                    case 4:
+                    case 4://학생 정보 수정
                         OutputView.printEditSubject();
-                        int editStdId = InputView.readEditStudentID(scan);
-                        Student editStudent = managementService.searchStudent(Students, editStdId);
-                        managementService.editStudent(editStudent, scan);
+                        managementService.editStudent(scan);
                         break;
-                    case 5:
+                    case 5://학생 삭제
                         OutputView.printDeleteSubject();
                         int deleteStdId = InputView.readDeleteStudentID(scan);
                         managementService.deleteStudent(Students, deleteStdId);
                         break;
-                    case 6:
+                    case 6://종료
                         OutputView.printExit();
                         return;
                     default:

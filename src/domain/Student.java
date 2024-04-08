@@ -1,21 +1,20 @@
 package domain;
 
+import dto.StudentDTO;
+
 public class Student {
     private final int stdId;
     private String name;
     private Grade grade;
 
-    public Student(int stdId, String name, int koreanGrade, int englishGrade, int mathGrade){
-        this.stdId = stdId;
-        this.name = name;
-        this.grade = new Grade(koreanGrade, englishGrade, mathGrade);
+    public Student(StudentDTO studentDTO){
+        this.stdId = studentDTO.getStdId();
+        this.name = studentDTO.getName();
+        this.grade = studentDTO.getGrade();
     }
 
     public int getStdId(){ return stdId; }
     public String getName(){ return name; }
     public Grade getGrade(){ return grade; }
-    public void setName(String name){ this.name = name; }
-    public void setGrade(Grade grade){
-        this.grade = grade;
-    }
+
 }
