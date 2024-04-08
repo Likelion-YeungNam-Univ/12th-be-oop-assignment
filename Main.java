@@ -75,6 +75,12 @@ public class Main {
                     }
                     break;
                 case 5:
+                    System.out.print("삭제할 학생의 학번을 입력하세요: ");
+                    String deleteId = scn.next();
+                    Student deleteSt = m.search(deleteId);
+                    if(deleteSt!=null){
+                        m.delete(deleteSt);
+                    }
                     break;
                 case 6:
                     //종료
