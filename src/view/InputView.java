@@ -38,9 +38,9 @@ public class InputView {
         System.out.print(MATH_GRADE_INPUT);
         return scan.nextLine();
     }
-    public static int readEditCmd(Scanner scan){
+    public static String readEditCmd(Scanner scan){
         System.out.println(EDIT_LIST);
-        return scan.nextInt();
+        return scan.nextLine();
     }
 
 }

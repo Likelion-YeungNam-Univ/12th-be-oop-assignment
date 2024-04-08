@@ -21,6 +21,7 @@ public class Student {
 
     public void validate(StudentDTO studentDTO){
         Validate.isValidStudentNumber(Integer.toString(studentDTO.getStdId()));
+        Validate.isValidStudentName(studentDTO.getName());
         Validate.isValidStudentGrade(studentDTO.getGrade());
     }
     public int getStdId(){ return stdId; }

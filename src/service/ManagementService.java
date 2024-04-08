@@ -32,29 +32,29 @@ public class ManagementService {
 
     public void editStudent(StudentDTO studentDTO, Scanner scan){
         Grade grade = studentDTO.getGrade();
-        int editCmd = InputView.readEditCmd(scan);
-
+        String editCmd = InputView.readEditCmd(scan);
+        Validate.isValidCmd(editCmd);
         switch (editCmd){
-            case 1:
+            case "1":
                 String name = InputView.readStudentName(scan);
                 studentDTO.setName(name);
                 break;
-            case 2:
+            case "2":
                 int koreanGrade = Integer.parseInt(InputView.readKoreanGrade(scan));
                 grade.setKoreanGrade(koreanGrade);
                 studentDTO.setGrade(grade);
                 break;
-            case 3:
+            case "3":
                 int englishGrade = Integer.parseInt(InputView.readEnglishGrade(scan));
                 grade.setEnglishGrade(englishGrade);
                 studentDTO.setGrade(grade);
                 break;
-            case 4:
+            case "4":
                 int mathGrade = Integer.parseInt(InputView.readMathGrade(scan));
                 grade.setMathGrade(mathGrade);
                 studentDTO.setGrade(grade);
                 break;
-            case 5:
+            case "5":
                 return;
             default:
                 OutputView.printWrong();

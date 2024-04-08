@@ -39,4 +39,10 @@ public class Validate {
             throw new IllegalArgumentException(ErrorView.DUP_STUDENT);
         }
     }
+
+    public static void isValidStudentName(String name) {
+        if(!name.matches(ValidConstant.NAME_REGEX)){
+            throw new IllegalArgumentException(ErrorView.NOT_VALID_STUDENT_NAME);
+        }
+    }
 }
