@@ -1,6 +1,6 @@
 package validate;
 
-import View.ErrorView;
+import view.ErrorView;
 import constant.GradeConstant;
 import constant.ValidConstant;
 import domain.Grade;

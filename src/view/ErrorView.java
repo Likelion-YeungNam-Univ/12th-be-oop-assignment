@@ -1,4 +1,4 @@
-package View;
+package view;
 
 public class ErrorView {
     public static final String STUDENT_ID_IS_EIGHT_NUMBER = "학번은 8자리이어야합니다.";

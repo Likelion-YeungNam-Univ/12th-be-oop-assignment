@@ -1,8 +1,8 @@
 package controller;
 
-import View.ErrorView;
-import View.InputView;
-import View.OutputView;
+import view.ErrorView;
+import view.InputView;
+import view.OutputView;
 import dto.GradeDTO;
 import dto.StudentDTO;
 import service.ManagementService;

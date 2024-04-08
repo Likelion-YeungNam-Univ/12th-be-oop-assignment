@@ -1,7 +1,7 @@
 package service;
 
-import View.InputView;
-import View.OutputView;
+import view.InputView;
+import view.OutputView;
 import domain.Grade;
 import domain.Student;
 import dto.GradeDTO;
