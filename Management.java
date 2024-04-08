@@ -12,9 +12,10 @@ public class Management {
         try  {
             BufferedWriter w = new BufferedWriter(new FileWriter("DB.txt",true));
             w.write(st.getId() + "/" + st.getName() + "/"
-                    + st.getK_score() + "/" + st.getE_score() + "/"
-                    + st.getM_score());
+                    + st.getKscore() + "/" + st.getEscore() + "/"
+                    + st.getMscore());
             w.newLine();
+            w.flush();
             w.close();
             System.out.println("저장 완료");
             students.add(st);
@@ -23,6 +24,23 @@ public class Management {
             System.out.println("실패");
         }
 
+    }
+    public void rewrite(){
+        try{
+            BufferedWriter w = new BufferedWriter(new FileWriter("DB.txt"));
+            for (Student st: students) {
+                w.write(st.getId() + "/" + st.getName() + "/"
+                        + st.getKscore() + "/" + st.getEscore() + "/"
+                        + st.getMscore());
+                w.newLine();
+            }
+            w.flush();
+            w.close();
+           
+
+        } catch (IOException e) {
+            System.out.println("실패");
+        }
     }
     public void load() {
         try {
@@ -58,22 +76,41 @@ public class Management {
     public void printDb(){
         for (Student st: students){
             System.out.printf("학번: %s / 이름: %s / 국어점수: %d / 영어점수: %d / 수학점수: %d\n",
-                    st.getId(),st.getName(),st.getK_score(),st.getE_score(),st.getM_score());
+                    st.getId(),st.getName(),st.getKscore(),st.getEscore(),st.getMscore());
         }
     }
-    public void search(String searchId){
+    public Student search(String searchId){
         int i=0;
         for (Student st: students){
             if(st.getId().equals(searchId)){
+
                 System.out.printf("학번: %s / 이름: %s / 국어점수: %d / 영어점수: %d / 수학점수: %d\n",
-                        st.getId(),st.getName(),st.getK_score(),st.getE_score(),st.getM_score());
-                break;
+                        st.getId(), st.getName(), st.getKscore(), st.getEscore(), st.getMscore());
+                return st;
             }
             i++;
             if(i==students.size()){
                 System.out.println("해당 학생 없음");
             }
-
         }
+        return null;
+    }
+    public void update(Student updateSt){
+        for(int i=0; i<students.size(); i++){
+            Student st=students.get(i);
+            if(st.getId().equals(updateSt.getId())){
+                //내용 수정
+                students.set(i,updateSt);
+                break;
+            }
+        }
+
+        rewrite();
+        System.out.println("수정 완료");
+    }
+    public void delete(Student deleteSt){
+        students.remove(deleteSt);
+        rewrite();
+        System.out.println("삭제 완료");
     }
 }
