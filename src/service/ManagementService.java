@@ -6,8 +6,6 @@ import domain.Grade;
 import domain.Student;
 import dto.StudentDTO;
 import repository.StudentsRepository;
-
-import java.util.List;
 import java.util.Scanner;
 
 public class ManagementService {
@@ -70,7 +68,8 @@ public class ManagementService {
         createStudent(studentDTO);
     }
 
-    public void deleteStudent(List<Student> students, int stdId) {
-        students.removeIf(student -> student.getStdId() == stdId);
+    public void deleteStudent(Scanner scan) {
+        Student student = findStudent(scan);
+        studentRepository.delete(student);
     }
 }

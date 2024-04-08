@@ -1,8 +1,6 @@
 package repository;
 
 import domain.Student;
-import dto.StudentDTO;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -19,5 +17,9 @@ public class StudentsRepository {
 
     public Map<Integer, Student> findAll(){
         return students;
+    }
+
+    public void delete(Student student){
+        students.remove(student.getStdId());
     }
 }

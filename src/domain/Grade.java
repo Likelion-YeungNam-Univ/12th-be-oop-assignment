@@ -7,7 +7,7 @@ public class Grade
     private int koreanGrade;
     private int englishGrade;
     private int mathGrade;
-    private int average;
+    private double average;
     public Grade(int koreanGrade, int englishGrade, int mathGrade){
         this.koreanGrade = koreanGrade;
         this.englishGrade = englishGrade;
@@ -26,12 +26,12 @@ public class Grade
     }
 
 
-    public void getAverage(int average) {
-        this.average = average;
+    public double getAverage() {
+        return average;
     }
 
     public void setAverage() {
-        this.average = (koreanGrade + englishGrade + mathGrade) / GradeConstant.SUBJECT_CONUT;
+        this.average = (double)(koreanGrade + englishGrade + mathGrade) / GradeConstant.SUBJECT_CONUT;
     }
 
     public void setKoreanGrade(int koreanGrade) {

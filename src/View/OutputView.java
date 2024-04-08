@@ -4,11 +4,8 @@ import domain.Grade;
 import domain.Student;
 import dto.StudentDTO;
 import repository.StudentsRepository;
-
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class OutputView {
     private static final String MENU_BAR_MSG = "1. 학생 등록, 2. 학생 전체 조회, 3. 학생 검색, 4. 학생 정보 수정, 5. 학생 삭제, 6. 종료";
@@ -19,7 +16,7 @@ public class OutputView {
     public static final String STUDENT_SEARCH_PRINT = "\n<학생 검색>";
     public static final String STUDENT_EDIT_PRINT = "\n<학생 수정>";
     public static final String STUDENT_DELETE_PRINT = "\n<학생 삭제>";
-    private static final String STUDENT_INFO_PRINT_FORMAT = "- %s\n학번 : %d\n국어성적 : %3d, 영어성적 : %3d, 수학성적 : %3d\n\n";
+    private static final String STUDENT_INFO_PRINT_FORMAT = "- %s\n학번 : %d\n국어성적 : %3d, 영어성적 : %3d, 수학성적 : %3d\n평균 : %f\n\n";
 
     public static void printMenuBar(){
         System.out.println(MENU_BAR_MSG);
@@ -57,6 +54,6 @@ public class OutputView {
     public static void printStudentInfo(Student student){
         Grade grade = student.getGrade();
         System.out.printf(STUDENT_INFO_PRINT_FORMAT, student.getName(), student.getStdId(),
-                grade.getKoreanGrade(), grade.getEnglishGrade(), grade.getMathGrade() );
+                grade.getKoreanGrade(), grade.getEnglishGrade(), grade.getMathGrade(), grade.getAverage() );
     }
 }
