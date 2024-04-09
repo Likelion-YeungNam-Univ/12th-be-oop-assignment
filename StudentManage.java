@@ -31,4 +31,10 @@ public class StudentManage {
     public Student Student(Long id){
         return studentList.remove(id);
     }
+
+    public Boolean isExists(Long id){
+        Student student = studentList.get(id);
+        if(student == null) return false;
+        return true;
+    }
 }
