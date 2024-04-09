@@ -22,6 +22,9 @@ public class StudentTest {
                 case 4 :
                     removeForm();
                     break;
+                case 5 :
+                    printForm();
+                    break;
             }
         }
 
@@ -118,5 +121,15 @@ public class StudentTest {
         }catch (IllegalArgumentException e){
             System.out.println("No student found with the student ID");
         }
+    }
+
+    public static void printForm(){
+        System.out.println("Print Student ");
+        String studentList = studentManage.showStudent();
+        if(studentList.isEmpty()) {
+            System.out.println("No student found");
+            return;
+        }
+        System.out.println(studentManage.showStudent());
     }
 }
