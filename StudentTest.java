@@ -16,6 +16,9 @@ public class StudentTest {
                 case 2 :
                     searchForm();
                     break;
+                case 3 :
+                    updateForm();
+                    break;
             }
         }
 
@@ -53,6 +56,49 @@ public class StudentTest {
 
         try{
             System.out.println(studentManage.searchStudent(id));
+        }catch (IllegalArgumentException e){
+            System.out.println("No student found with the student ID");
+        }
+    }
+
+    public static void updateForm(){
+        System.out.println("Update Student");
+        System.out.print("student id to update : ");
+        Long id = scanner.nextLong();
+
+        try{
+            Student student = studentManage.searchStudent(id);
+            System.out.println("origin : " + student);
+
+            switch (scanner.nextInt()){
+                case 1 : {
+                    System.out.print("new name: ");
+                    String name = scanner.next();
+                    student.setName(name);
+                    break;
+                }
+                case 2 : {
+                    System.out.print("new koren grade : ");
+                    int korea = scanner.nextInt();
+                    student.setKorea(korea);
+                    break;
+                }
+                case 3 : {
+                    System.out.print("new english grade : ");
+                    int english = scanner.nextInt();
+                    student.setEnglish(english);
+                    break;
+                }
+                case 4 : {
+                    System.out.print("new math grade : ");
+                    int math = scanner.nextInt();
+                    student.setMath(math);
+                    break;
+                }
+            }
+            studentManage.updateStudent(student);
+            System.out.println(studentManage.searchStudent(student.getId()));
+
         }catch (IllegalArgumentException e){
             System.out.println("No student found with the student ID");
         }
