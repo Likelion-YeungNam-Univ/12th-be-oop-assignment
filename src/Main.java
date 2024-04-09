@@ -47,7 +47,18 @@ public class Main {
                         // 학생 등록 로직
                         break;
                     case 2:
-
+                        System.out.println("모든 학생 정보 조회:");
+                        List<StudentDTO> students = studentServiceImpl.getAllStudents();
+                        if (students.isEmpty()) {
+                            System.out.println("등록된 학생이 없습니다.");
+                        } else {
+                            for (StudentDTO stu : students) {
+                                System.out.println("등록번호: " + stu.getId() +", 학번: " + stu.getStudentId() + ", 이름: " + stu.getName() +
+                                        ", 국어 성적: " + stu.getKoreanScore() +
+                                        ", 영어 성적: " + stu.getEnglishScore() +
+                                        ", 수학 성적: " + stu.getMathScore());
+                            }
+                        }
                         break;
                     case 3:
                         // 전체 학생 조회 로직
