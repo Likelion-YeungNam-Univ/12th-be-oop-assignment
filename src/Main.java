@@ -86,7 +86,7 @@ public class Main {
 
                         System.out.println("수정할 국어 점수: ");
                         int newKoreanScore = scanner.nextInt();
-                        scanner.nextLine(); // 버퍼 비우기
+                        scanner.nextLine();
 
                         System.out.println("수정할 수학 점수: ");
                         int newMathScore = scanner.nextInt();
@@ -99,15 +99,14 @@ public class Main {
 
                         // 학생 정보 업데이트
                         studentServiceImpl.updateStudent(updatedStudent);
-
+                        break;
 
                     case 5:
                         System.out.println("삭제할 학생의 학번을 입력하세요: ");
                         studentId = scanner.nextLine();
 
-                        // 학생 삭제
                         studentServiceImpl.deleteStudent(studentId);
-
+                        break;
                     case 0:
                         System.out.println("시스템을 종료합니다.");
                         return;

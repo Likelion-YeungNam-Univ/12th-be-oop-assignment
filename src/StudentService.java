@@ -9,13 +9,13 @@ public class StudentService implements StudentServiceImpl {
     public void addStudent(StudentDTO student) {
 
         int newId = students.size();
-        student.setId(String.valueOf(newId)); // 학생 객체에 등록번호 설정
-        students.add(student); // 학생 목록에 학생 객체 추가
+        student.setId(String.valueOf(newId));
+        students.add(student);
     }
 
     @Override
     public List<StudentDTO> getAllStudents() {
-        return students; // 직접 내부 리스트 반환
+        return students;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class StudentService implements StudentServiceImpl {
     public void updateStudent(StudentDTO updatedStudent) {
         for (StudentDTO student : students) {
             if (student.getStudentId().equals(updatedStudent.getStudentId())) {
-                // 학번이 일치하는 학생을 찾았다면, 이름, 국어 점수, 수학 점수를 업데이트합니다.
+
                 student.setName(updatedStudent.getName());
                 student.setKoreanScore(updatedStudent.getKoreanScore());
                 student.setMathScore(updatedStudent.getMathScore());
@@ -46,6 +46,16 @@ public class StudentService implements StudentServiceImpl {
 
     @Override
     public void deleteStudent(String studentId) {
+
+        for (int i = students.size() - 1; i >= 0; i--) {
+            StudentDTO student = students.get(i);
+            if (student.getStudentId().equals(studentId)) {
+                students.remove(i);
+                System.out.println(studentId + " 학번을 가진 학생이 성공적으로 삭제되었습니다.");
+                return;
+            }
+        }
+        System.out.println(studentId + " 학번을 가진 학생을 찾을 수 없습니다.");
 
     }
 }

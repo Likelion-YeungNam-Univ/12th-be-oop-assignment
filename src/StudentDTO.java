@@ -18,7 +18,7 @@ public class StudentDTO {
         this.name = name;
         this.koreanScore = koreanScore;
         this.mathScore = mathScore;
-        this.englishScore = englishScore; // 영어 점수 초기화
+        this.englishScore = englishScore;
     }
 
 
