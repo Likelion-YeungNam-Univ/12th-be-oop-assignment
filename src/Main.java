@@ -9,11 +9,10 @@ public class Main {
             while (true) {
                 System.out.println("\n### 학생 관리 시스템 ###");
                 System.out.println("1. 학생 등록");
-                System.out.println("2. 학생 조회");
-                System.out.println("3. 전체 학생 조회");
+                System.out.println("2. 전체 학생 조회");
+                System.out.println("3. 학번으로 학생 조회");
                 System.out.println("4. 학생 수정");
                 System.out.println("5. 학생 삭제");
-                System.out.println("6. 학생 이름으로 검색");
                 System.out.println("0. 종료");
                 System.out.print("메뉴 선택: ");
 
@@ -79,14 +78,36 @@ public class Main {
                         }
                         break;
                     case 4:
-                        // 학생 수정 로직
-                        break;
+                        System.out.println("업데이트할 학생의 학번을 입력하세요: ");
+                        studentId = scanner.nextLine();
+
+                        System.out.println("수정할 이름: ");
+                        String newName = scanner.nextLine();
+
+                        System.out.println("수정할 국어 점수: ");
+                        int newKoreanScore = scanner.nextInt();
+                        scanner.nextLine(); // 버퍼 비우기
+
+                        System.out.println("수정할 수학 점수: ");
+                        int newMathScore = scanner.nextInt();
+
+                        System.out.println("수정할 영어 점수: ");
+                        int newEnglishScore = scanner.nextInt();
+
+                        // 업데이트할 학생 정보를 담은 StudentDTO 객체 생성
+                        StudentDTO updatedStudent = new StudentDTO(studentId, newName, newKoreanScore, newMathScore, newEnglishScore);
+
+                        // 학생 정보 업데이트
+                        studentServiceImpl.updateStudent(updatedStudent);
+
+
                     case 5:
-                        // 학생 삭제 로직
-                        break;
-                    case 6:
-                        // 학생 이름으로 검색
-                        break;
+                        System.out.println("삭제할 학생의 학번을 입력하세요: ");
+                        studentId = scanner.nextLine();
+
+                        // 학생 삭제
+                        studentServiceImpl.deleteStudent(studentId);
+
                     case 0:
                         System.out.println("시스템을 종료합니다.");
                         return;

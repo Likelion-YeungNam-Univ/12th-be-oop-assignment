@@ -4,15 +4,13 @@ import java.util.List;
 
 
 public class StudentService implements StudentServiceImpl {
-    private static int currentId = 0; // 등록번호를 위한 변수
     private List<StudentDTO> students = new ArrayList<>();
     @Override
     public void addStudent(StudentDTO student) {
 
-        currentId++; // 학생을 추가할 때마다 등록번호를 1 증가
-        student.setId(String.valueOf(currentId)); // 학생 객체에 등록번호 설정
-        students.add(student);
-
+        int newId = students.size();
+        student.setId(String.valueOf(newId)); // 학생 객체에 등록번호 설정
+        students.add(student); // 학생 목록에 학생 객체 추가
     }
 
     @Override
@@ -27,15 +25,24 @@ public class StudentService implements StudentServiceImpl {
                 return student;
             }
         }
-        // 학생을 찾을 수 없는 경우 null 반환
-        // 또는 학생을 찾을 수 없음을 알리는 예외를 발생시킬 수도 있습니다.
         return null;
     }
 
     @Override
-    public void updateStudent(StudentDTO student) {
-
+    public void updateStudent(StudentDTO updatedStudent) {
+        for (StudentDTO student : students) {
+            if (student.getStudentId().equals(updatedStudent.getStudentId())) {
+                // 학번이 일치하는 학생을 찾았다면, 이름, 국어 점수, 수학 점수를 업데이트합니다.
+                student.setName(updatedStudent.getName());
+                student.setKoreanScore(updatedStudent.getKoreanScore());
+                student.setMathScore(updatedStudent.getMathScore());
+                System.out.println("학생 정보가 업데이트되었습니다.");
+                return;
+            }
+        }
+        System.out.println("해당 학번의 학생을 찾을 수 없습니다.");
     }
+
 
     @Override
     public void deleteStudent(String studentId) {

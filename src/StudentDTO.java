@@ -9,6 +9,19 @@ public class StudentDTO {
     private int englishScore; // 영어 성적
     private int mathScore; // 수학 성적
 
+    public StudentDTO() {
+    }
+
+    // 모든 필드를 인자로 받는 생성자 추가
+    public StudentDTO(String studentId, String name, int koreanScore, int mathScore, int englishScore) {
+        this.studentId = studentId;
+        this.name = name;
+        this.koreanScore = koreanScore;
+        this.mathScore = mathScore;
+        this.englishScore = englishScore; // 영어 점수 초기화
+    }
+
+
 }
 
 
