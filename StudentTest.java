@@ -19,6 +19,9 @@ public class StudentTest {
                 case 3 :
                     updateForm();
                     break;
+                case 4 :
+                    removeForm();
+                    break;
             }
         }
 
@@ -40,13 +43,14 @@ public class StudentTest {
 
         Student student = new Student(id, name, korea, english, math);
 
-        if(studentManage.isExists(student.getId())) {
+        try{
+            studentManage.addStudent(student);
+            System.out.println("Registered Student: " + studentManage.searchStudent(student.getId()));
+        }
+        catch (IllegalArgumentException e){
             System.out.println("This student ID already exists.");
             return;
         }
-
-        studentManage.addStudent(student);
-        System.out.println("Registered Student: " + studentManage.searchStudent(student.getId()));
     }
 
     public static void searchForm(){
@@ -97,8 +101,20 @@ public class StudentTest {
                 }
             }
             studentManage.updateStudent(student);
-            System.out.println(studentManage.searchStudent(student.getId()));
+            System.out.println("update : " + studentManage.searchStudent(student.getId()));
 
+        }catch (IllegalArgumentException e){
+            System.out.println("No student found with the student ID");
+        }
+    }
+
+    public static void removeForm(){
+        System.out.println("Remove Student ");
+        System.out.print("student id to remove : ");
+        Long id = scanner.nextLong();
+
+        try{
+            System.out.println("removed : " + studentManage.removeStudent(id));
         }catch (IllegalArgumentException e){
             System.out.println("No student found with the student ID");
         }

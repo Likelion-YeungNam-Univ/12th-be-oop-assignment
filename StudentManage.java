@@ -7,6 +7,7 @@ public class StudentManage {
 
     //1. 학생등록
     public void addStudent(Student student){
+        if(isExists(student.getId())) throw new IllegalArgumentException();
         studentList.put(student.getId(), student);
     }
 
@@ -31,6 +32,7 @@ public class StudentManage {
 
     //5. 학생삭제
     public Student removeStudent(Long id){
+        if(!isExists(id)) throw new IllegalArgumentException();
         return studentList.remove(id);
     }
 
