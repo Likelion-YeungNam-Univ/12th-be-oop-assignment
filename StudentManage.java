@@ -19,7 +19,9 @@ public class StudentManage {
 
     //3. 학생검색
     public Student searchStudent(Long id){
-        return studentList.get(id);
+        Student student = studentList.get(id);
+        if(student == null) throw new IllegalArgumentException();
+        return student;
     }
 
     //4. 학생정보수정
@@ -28,7 +30,7 @@ public class StudentManage {
     }
 
     //5. 학생삭제
-    public Student Student(Long id){
+    public Student removeStudent(Long id){
         return studentList.remove(id);
     }
 

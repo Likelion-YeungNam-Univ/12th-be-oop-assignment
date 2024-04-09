@@ -13,6 +13,9 @@ public class StudentTest {
                 case 1 :
                     addForm();
                     break;
+                case 2 :
+                    searchForm();
+                    break;
             }
         }
 
@@ -41,5 +44,17 @@ public class StudentTest {
 
         studentManage.addStudent(student);
         System.out.println("Registered Student: " + studentManage.searchStudent(student.getId()));
+    }
+
+    public static void searchForm(){
+        System.out.println("Search Student");
+        System.out.print("student id to search : ");
+        Long id = scanner.nextLong();
+
+        try{
+            System.out.println(studentManage.searchStudent(id));
+        }catch (IllegalArgumentException e){
+            System.out.println("No student found with the student ID");
+        }
     }
 }
