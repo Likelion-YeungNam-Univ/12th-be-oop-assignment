@@ -3,10 +3,24 @@ import java.util.Scanner;
 public class StudentTest {
     public static final StudentManage studentManage = new StudentManage();
     public static final Scanner scanner = new Scanner(System.in);
+    public static String INIT_CTR =
+                    "╔═════════════════════════════════════════════════╗\n" +
+                    "║  student management program.                    ║\n" +
+                    "║  0 : exit        1 : registration     2.search  ║\n" +
+                    "║  3 : update      4 : remove           5.print   ║\n" +
+                    "╚═════════════════════════════════════════════════╝";
+    public static String UPDATE_CTR =
+                    "╔═════════════════════════════╗\n" +
+                    "║  student update.            ║\n" +
+                    "║  1 : name        2 : korea  ║\n" +
+                    "║  3 : english     4 : math   ║\n" +
+                    "╚═════════════════════════════╝";
+    public static String FORMAT = "%-8s%-15s%-10s%-10s%-10s%n";
 
     public static void main(String[] args) {
 
         while(true){
+            System.out.println(INIT_CTR);
             int process = scanner.nextInt();
             if(process == 0) break;
             switch (process){
@@ -48,7 +62,9 @@ public class StudentTest {
 
         try{
             studentManage.addStudent(student);
-            System.out.println("Registered Student: " + studentManage.searchStudent(student.getId()));
+            System.out.println("Registered Student");
+            System.out.printf(FORMAT, "ID", "NAME", "KOREA", "ENGLISH", "MATH");
+            System.out.printf(studentManage.searchStudent(student.getId()).toString());
         }
         catch (IllegalArgumentException e){
             System.out.println("This student ID already exists.");
@@ -62,7 +78,8 @@ public class StudentTest {
         Long id = scanner.nextLong();
 
         try{
-            System.out.println(studentManage.searchStudent(id));
+            System.out.printf(FORMAT, "ID", "NAME", "KOREA", "ENGLISH", "MATH");
+            System.out.printf(studentManage.searchStudent(id).toString());
         }catch (IllegalArgumentException e){
             System.out.println("No student found with the student ID");
         }
@@ -75,8 +92,10 @@ public class StudentTest {
 
         try{
             Student student = studentManage.searchStudent(id);
-            System.out.println("origin : " + student);
-
+            System.out.println("ORIGIN");
+            System.out.printf(FORMAT, "ID", "NAME", "KOREA", "ENGLISH", "MATH");
+            System.out.printf(student.toString());
+            System.out.println(UPDATE_CTR);
             switch (scanner.nextInt()){
                 case 1 : {
                     System.out.print("new name: ");
@@ -104,7 +123,9 @@ public class StudentTest {
                 }
             }
             studentManage.updateStudent(student);
-            System.out.println("update : " + studentManage.searchStudent(student.getId()));
+            System.out.println("UPDATED");
+            System.out.printf(FORMAT, "ID", "NAME", "KOREA", "ENGLISH", "MATH");
+            System.out.printf(studentManage.searchStudent(student.getId()).toString());
 
         }catch (IllegalArgumentException e){
             System.out.println("No student found with the student ID");
@@ -117,7 +138,9 @@ public class StudentTest {
         Long id = scanner.nextLong();
 
         try{
-            System.out.println("removed : " + studentManage.removeStudent(id));
+            System.out.println("REMOVED");
+            System.out.printf(FORMAT, "ID", "NAME", "KOREA", "ENGLISH", "MATH");
+            System.out.printf(studentManage.removeStudent(id).toString());
         }catch (IllegalArgumentException e){
             System.out.println("No student found with the student ID");
         }
@@ -130,6 +153,7 @@ public class StudentTest {
             System.out.println("No student found");
             return;
         }
-        System.out.println(studentManage.showStudent());
+        System.out.printf(FORMAT, "ID", "NAME", "KOREA", "ENGLISH", "MATH");
+        System.out.printf(studentManage.showStudent());
     }
 }

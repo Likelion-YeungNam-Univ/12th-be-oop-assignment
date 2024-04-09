@@ -7,6 +7,8 @@ public class Student {
     private int english;
     private int math;
 
+    public static String FORMAT = "%-8s%-15s%-10s%-10s%-10s%n";
+
     public Student(Long id, String name, int korea, int english, int math) {
         this.id = id;
         this.name = name;
@@ -17,13 +19,7 @@ public class Student {
 
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder();
-        return sb.append(getId()).append("\t")
-                .append(getName()).append("\t")
-                .append(getKorea()).append("\t")
-                .append(getEnglish()).append("\t")
-                .append(getMath())
-                .toString();
+        return String.format(FORMAT, getId(), getName(), getKorea(), getEnglish(), getMath());
     }
 
     public Long getId() {
