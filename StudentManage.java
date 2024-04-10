@@ -12,10 +12,8 @@ public class StudentManage {
     }
 
     //2. 학생전체조회
-    public String showStudent(){
-        StringBuilder sb = new StringBuilder();
-        studentList.forEach((id, student) -> sb.append(student.toString()).append("\n"));
-        return sb.toString();
+    public Map<Long, Student> getStudentList() {
+        return studentList;
     }
 
     //3. 학생검색
