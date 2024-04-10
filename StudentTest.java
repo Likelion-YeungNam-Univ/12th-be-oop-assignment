@@ -14,6 +14,12 @@ public class StudentTest {
                     "║  student update. - choose a update field           ║\n" +
                     "║  1 : name    2 : korea    3 : english    4 : math  ║\n" +
                     "╚════════════════════════════════════════════════════╝";
+
+    public static String SORT_CTR =
+                    "╔══════════════════════════════════════════════════╗\n" +
+                    "║  student update. - choose a sorting method       ║\n" +
+                    "║  1 : id    2 : korea    3 : english    4 : math  ║\n" +
+                    "╚══════════════════════════════════════════════════╝";
     public static String FORMAT = "%-8s%-15s%-10s%-10s%-10s%n";
 
     public static void main(String[] args) {
@@ -148,7 +154,7 @@ public class StudentTest {
     public static void printForm(){
         System.out.println("Print Student ");
         StringBuilder sb = new StringBuilder();
-        studentManage.getStudentList().forEach((id, student) -> sb.append(student));
+        sort().forEach(student-> sb.append(student));
 
         if(sb.isEmpty()) {
             System.out.println("No student found");
@@ -156,6 +162,54 @@ public class StudentTest {
         }
         System.out.printf(FORMAT, "ID", "NAME", "KOREA", "ENGLISH", "MATH");
         System.out.printf(sb.toString());
+    }
+
+    static class DescId implements Comparator<Student>{
+        @Override
+        public int compare(Student o1, Student o2) {
+            return (int) (o1.getId() - o2.getId());
+        }
+    }
+
+    static class AscKorea implements Comparator<Student>{
+        @Override
+        public int compare(Student o1, Student o2) {
+            return o2.getKorea() - o1.getKorea();
+        }
+    }
+
+    static class AscEnglish implements Comparator<Student>{
+        @Override
+        public int compare(Student o1, Student o2) {
+            return o2.getEnglish() - o1.getEnglish();
+        }
+    }
+
+    static class AscMath implements Comparator<Student>{
+        @Override
+        public int compare(Student o1, Student o2) {
+            return o2.getMath() - o1.getMath();
+        }
+    }
+
+    public static List<Student> sort(){
+        List<Student> studentList = new ArrayList<>(studentManage.getStudentList().values());
+        System.out.println(SORT_CTR);
+        switch (scanner.nextInt()){
+            case 1:
+                Collections.sort(studentList, new DescId());
+                break;
+            case 2:
+                Collections.sort(studentList, new AscKorea());
+                break;
+            case 3:
+                Collections.sort(studentList, new AscEnglish());
+                break;
+            case 4:
+                Collections.sort(studentList, new AscMath());
+                break;
+        }
+        return studentList;
     }
     public static void init(){
         studentManage.addStudent(new Student(1L, "Student1", 92, 45, 78));
