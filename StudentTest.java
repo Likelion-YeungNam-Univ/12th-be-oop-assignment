@@ -52,50 +52,64 @@ public class StudentTest {
 
     public static void addForm(){
         System.out.println("Student Registration ");
-        System.out.print("Student ID : ");
-        Long id = scanner.nextLong();
-        System.out.print("Name: ");
-        String name = scanner.next();
-        System.out.print("Korean Grade: ");
-        int korea = scanner.nextInt();
-        System.out.print("English Grade: ");
-        int english = scanner.nextInt();
-        System.out.print("Math Grade: ");
-        int math = scanner.nextInt();
-
-        Student student = new Student(id, name, korea, english, math);
+        System.out.print("Student ID(number) : ");
 
         try{
+            //입력
+            Long id = scanner.nextLong();
+            System.out.print("Name(string): ");
+            String name = scanner.next();
+            System.out.print("Korean Grade[number 0(default)-100]: ");
+            int korea = scanner.nextInt();
+            System.out.print("English Grade[number 0(default)-100]: ");
+            int english = scanner.nextInt();
+            System.out.print("Math Grade[number 0(default)-100]: ");
+            int math = scanner.nextInt();
+            Student student = new Student(id, name, korea, english, math);
+
+            //추가
             studentManage.addStudent(student);
+
+            //출력
             System.out.println("Registered Student");
             System.out.printf(FORMAT, "ID", "NAME", "KOREA", "ENGLISH", "MATH");
             System.out.printf(studentManage.searchStudent(student.getId()).toString());
-        }
-        catch (IllegalArgumentException e){
+        }catch (IllegalArgumentException e){
             System.out.println("This student ID already exists.");
-            return;
+        }catch (InputMismatchException e){
+            System.out.println("input mismatch. try again");
+            scanner.next();
         }
+
     }
 
     public static void searchForm(){
         System.out.println("Search Student");
         System.out.print("student id to search : ");
-        Long id = scanner.nextLong();
 
         try{
+            //입력
+            Long id = scanner.nextLong();
+            //출력
             System.out.printf(FORMAT, "ID", "NAME", "KOREA", "ENGLISH", "MATH");
             System.out.printf(studentManage.searchStudent(id).toString());
         }catch (IllegalArgumentException e){
             System.out.println("No student found with the student ID");
+        }catch (InputMismatchException e){
+            System.out.println("input mismatch. try again");
+            scanner.next();
         }
     }
 
     public static void updateForm(){
         System.out.println("Update Student");
         System.out.print("student id to update : ");
-        Long id = scanner.nextLong();
 
         try{
+            //입력
+            Long id = scanner.nextLong();
+
+            //원본출력
             Student student = studentManage.searchStudent(id);
             System.out.println("ORIGIN");
             System.out.printf(FORMAT, "ID", "NAME", "KOREA", "ENGLISH", "MATH");
@@ -103,25 +117,25 @@ public class StudentTest {
             System.out.println(UPDATE_CTR);
             switch (scanner.nextInt()){
                 case 1 : {
-                    System.out.print("new name: ");
+                    System.out.print("new name[number 0(default)-100]: ");
                     String name = scanner.next();
                     student.setName(name);
                     break;
                 }
                 case 2 : {
-                    System.out.print("new koren grade : ");
+                    System.out.print("new koren grade[number 0(default)-100] : ");
                     int korea = scanner.nextInt();
                     student.setKorea(korea);
                     break;
                 }
                 case 3 : {
-                    System.out.print("new english grade : ");
+                    System.out.print("new english grade[number 0(default)-100]: ");
                     int english = scanner.nextInt();
                     student.setEnglish(english);
                     break;
                 }
                 case 4 : {
-                    System.out.print("new math grade : ");
+                    System.out.print("new math grade[number 0(default)-100] : ");
                     int math = scanner.nextInt();
                     student.setMath(math);
                     break;
@@ -134,20 +148,26 @@ public class StudentTest {
 
         }catch (IllegalArgumentException e){
             System.out.println("No student found with the student ID");
+        }catch (InputMismatchException e){
+            System.out.println("input mismatch. try again");
+            scanner.next();
         }
     }
 
     public static void removeForm(){
         System.out.println("Remove Student ");
         System.out.print("student id to remove : ");
-        Long id = scanner.nextLong();
 
         try{
+            Long id = scanner.nextLong();
             System.out.println("REMOVED");
             System.out.printf(FORMAT, "ID", "NAME", "KOREA", "ENGLISH", "MATH");
             System.out.printf(studentManage.removeStudent(id).toString());
         }catch (IllegalArgumentException e){
             System.out.println("No student found with the student ID");
+        }catch (InputMismatchException e){
+            System.out.println("input mismatch. try again");
+            scanner.next();
         }
     }
 
