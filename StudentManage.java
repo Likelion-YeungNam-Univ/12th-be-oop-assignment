@@ -1,13 +1,14 @@
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class StudentManage {
     private Map<Long, Student> studentList = new HashMap<Long, Student>();
 
     //1. 학생등록
     public void addStudent(Student student){
-        if(isExists(student.getId())) throw new IllegalArgumentException();
+        if(isExists(student.getId())) throw new IllegalStateException();
         studentList.put(student.getId(), student);
     }
 
@@ -19,7 +20,7 @@ public class StudentManage {
     //3. 학생검색
     public Student searchStudent(Long id){
         Student student = studentList.get(id);
-        if(student == null) throw new IllegalArgumentException();
+        if(student == null) throw new NoSuchElementException();
         return student;
     }
 
@@ -30,7 +31,7 @@ public class StudentManage {
 
     //5. 학생삭제
     public Student removeStudent(Long id){
-        if(!isExists(id)) throw new IllegalArgumentException();
+        if(!isExists(id)) throw new NoSuchElementException();
         return studentList.remove(id);
     }
 
