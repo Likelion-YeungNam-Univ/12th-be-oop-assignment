@@ -37,13 +37,24 @@ public class Main {
                 lastStudentId++;
                 int id = lastStudentId;
 
-                Student student = new Student(studentId, name, korGr, engGr,matGr);
+                Student student = new Student(studentId, name, korGr, engGr, matGr);
                 students.add(student);
 
                 System.out.printf("%d번 학생이 등록되었습니다.\n", lastStudentId);
             }
-            else if (cmd.equals("목록")) {
-                System.out.println("총 학생 수 : " + students.size());
+            else if (cmd.equals("목록 조회")) {
+
+                System.out.println("학번 / 이름 / 국어 성적 / 영어 성적 / 수학 성적");
+
+                System.out.println("---------------------------------------");
+
+                if (students.isEmpty())
+                    System.out.println("등록된 학생이 없습니다.");
+
+                for (int i = students.size() - 1; i >= 0; i--) {
+                    Student student = students.get(i);
+                    System.out.printf("%s / %s / %d / %d / %d \n", student.studentId, student.name, student.korGr,student.engGr, student.matGr );
+                }
             }
         }
     }
