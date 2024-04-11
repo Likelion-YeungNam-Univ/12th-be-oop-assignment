@@ -107,6 +107,10 @@ public class Main {
             if (student.getStudentId().equals(studentIdToModify)) {
                 System.out.println("수정할 정보를 입력하세요:");
 
+                System.out.print("학번 : ");
+                String studentId = scanner.nextLine();
+                student.setStudentId(studentId);
+
                 System.out.print("이름 : ");
                 String name = scanner.next();
                 student.setName(name);
@@ -131,8 +135,10 @@ public class Main {
 
         if (!found) {
             System.out.println("해당 학번을 가진 학생을 찾을 수 없습니다.");
+            modifyStudent();
         }
     }
+
     private static void deleteStudent() {
         System.out.print("삭제할 학생의 학번을 입력하세요: ");
         String studentIdToDelete = scanner.nextLine();
@@ -150,6 +156,7 @@ public class Main {
 
         if (!found) {
             System.out.println("해당 학번을 가진 학생을 찾을 수 없습니다.");
+            deleteStudent();
         }
     }
 }
