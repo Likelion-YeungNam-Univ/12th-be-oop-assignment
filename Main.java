@@ -135,7 +135,6 @@ public class Main {
 
         if (!found) {
             System.out.println("해당 학번을 가진 학생을 찾을 수 없습니다.");
-            modifyStudent();
         }
     }
 
@@ -156,7 +155,6 @@ public class Main {
 
         if (!found) {
             System.out.println("해당 학번을 가진 학생을 찾을 수 없습니다.");
-            deleteStudent();
         }
     }
 }
