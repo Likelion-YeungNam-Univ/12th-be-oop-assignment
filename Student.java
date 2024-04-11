@@ -22,5 +22,37 @@ public class Student {
     public void setStudentId(Object studentId) {
         this.studentId = (String) studentId;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setKorGr(int korGr) {
+        this.korGr = korGr;
+    }
+
+    public int getKorGr() {
+        return korGr;
+    }
+
+    public void setEngGr(int engGr) {
+        this.engGr = engGr;
+    }
+
+    public int getEngGr() {
+        return engGr;
+    }
+
+    public void setMatGr(int matGr) {
+        this.matGr = matGr;
+    }
+
+    public int getMatGr() {
+        return matGr;
+    }
 }
 

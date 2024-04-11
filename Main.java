@@ -76,8 +76,42 @@ public class Main {
                 }
             }
             else if (cmd.equals("수정")) {
-                break;
+                System.out.print("수정할 학생의 학번을 입력하세요: ");
+                String studentIdToModify = scanner.nextLine();
+
+                boolean found = false;
+                for (int i = 0; i < students.size(); i++) {
+                    Student student = students.get(i);
+                    if (student.getStudentId().equals(studentIdToModify)) {
+                        System.out.println("수정할 정보를 입력하세요:");
+
+                        System.out.print("이름 : ");
+                        String name = scanner.next();
+                        student.setName(name);
+
+                        System.out.print("국어 성적 : ");
+                        int korGr = scanner.nextInt();
+                        student.setKorGr(korGr);
+
+                        System.out.print("영어 성적 : ");
+                        int engGr = scanner.nextInt();
+                        student.setEngGr(engGr);
+
+                        System.out.print("수학 성적 : ");
+                        int matGr = scanner.nextInt();
+                        student.setMatGr(matGr);
+
+                        System.out.println("학번이 " + studentIdToModify + "인 학생 정보가 수정되었습니다.");
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    System.out.println("해당 학번을 가진 학생을 찾을 수 없습니다.");
+                }
             }
+
             else if (cmd.equals("검색")) {
                 break;
             }
