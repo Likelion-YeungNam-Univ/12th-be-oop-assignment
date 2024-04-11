@@ -113,9 +113,25 @@ public class Main {
             }
 
             else if (cmd.equals("검색")) {
-                break;
-            }
+                System.out.print("검색할 학생의 학번 또는 이름을 입력하세요: ");
+                String keyword = scanner.nextLine();
 
+                boolean found = false;
+                for (Student student : students) {
+                    if (student.getStudentId().equals(keyword) || student.getName().equals(keyword)) {
+                        System.out.println("학번 / 이름 / 국어 성적 / 영어 성적 / 수학 성적");
+                        System.out.println("---------------------------------------");
+                        System.out.printf("%s / %s / %d / %d / %d\n", student.getStudentId(), student.getName(),
+                                student.getKorGr(), student.getEngGr(), student.getMatGr());
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    System.out.println("해당 학번 또는 이름을 가진 학생을 찾을 수 없습니다.");
+                }
+            }
 
         }
 
