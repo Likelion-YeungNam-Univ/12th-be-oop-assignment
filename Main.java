@@ -56,6 +56,35 @@ public class Main {
                     System.out.printf("%s / %s / %d / %d / %d \n", student.studentId, student.name, student.korGr,student.engGr, student.matGr );
                 }
             }
+            else if (cmd.equals("삭제")) {
+                System.out.print("삭제할 학생의 학번을 입력하세요: ");
+                String studentIdToDelete = scanner.nextLine();
+
+                boolean found = false;
+                for (int i = 0; i < students.size(); i++) {
+                    Student student = students.get(i);
+                    if (student.getStudentId().equals(studentIdToDelete)) {
+                        students.remove(i);
+                        System.out.println("학번이 " + studentIdToDelete + "인 학생 정보가 삭제되었습니다.");
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    System.out.println("해당 학번을 가진 학생을 찾을 수 없습니다.");
+                }
+            }
+            else if (cmd.equals("수정")) {
+                break;
+            }
+            else if (cmd.equals("검색")) {
+                break;
+            }
+
+
         }
+
     }
+
 }

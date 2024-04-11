@@ -15,5 +15,12 @@ public class Student {
         this.matGr = matGr;
     }
 
+    public Object getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Object studentId) {
+        this.studentId = (String) studentId;
+    }
 }
 
